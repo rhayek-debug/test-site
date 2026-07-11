@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hello, Vercel!</title>
+  <title>Welcome to Our Insurance Website</title>
+  <link rel="stylesheet" href="https://unpkg.com/@geoapify/geocoder-autocomplete/styles/minimal.css" />
   <style>
     * {
       margin: 0;
@@ -20,25 +21,26 @@
       gap: 2rem;
       padding: 3rem 1.5rem;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
-      color: #f1f5f9;
+      background: linear-gradient(135deg, #eafaf1 0%, #d7f2e3 50%, #eafaf1 100%);
+      color: #1e3a2f;
     }
 
     .card {
       text-align: center;
       padding: 3rem 2.5rem;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.7);
+      border: 1px solid rgba(45, 122, 79, 0.15);
       border-radius: 16px;
       backdrop-filter: blur(10px);
-      max-width: 480px;
+      max-width: 560px;
       width: 100%;
+      box-shadow: 0 4px 24px rgba(45, 122, 79, 0.08);
     }
 
     h1 {
       font-size: 2.25rem;
       margin-bottom: 0.75rem;
-      background: linear-gradient(135deg, #38bdf8, #818cf8);
+      background: linear-gradient(135deg, #2d7a4f, #4caf7d);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
@@ -47,12 +49,12 @@
     h2 {
       font-size: 1.5rem;
       margin-bottom: 1.5rem;
-      color: #f1f5f9;
+      color: #1e3a2f;
       text-align: left;
     }
 
     p {
-      color: #94a3b8;
+      color: #3f5f4f;
       font-size: 1.05rem;
       line-height: 1.6;
       margin-bottom: 1.5rem;
@@ -62,29 +64,92 @@
       display: inline-block;
       padding: 0.4rem 0.9rem;
       border-radius: 999px;
-      background: rgba(56, 189, 248, 0.15);
-      border: 1px solid rgba(56, 189, 248, 0.3);
-      color: #38bdf8;
+      background: rgba(76, 175, 125, 0.15);
+      border: 1px solid rgba(76, 175, 125, 0.4);
+      color: #2d7a4f;
       font-size: 0.85rem;
       font-weight: 600;
       letter-spacing: 0.02em;
     }
 
+    /* Coverage icons */
+    .coverage-card {
+      max-width: 560px;
+      width: 100%;
+      padding: 2.5rem;
+      background: rgba(255, 255, 255, 0.7);
+      border: 1px solid rgba(45, 122, 79, 0.15);
+      border-radius: 16px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 4px 24px rgba(45, 122, 79, 0.08);
+    }
+
+    .coverage-card h2 {
+      text-align: center;
+    }
+
+    .coverage-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .coverage-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 1rem 0.5rem;
+      border-radius: 12px;
+      transition: background 0.15s ease;
+    }
+
+    .coverage-item:hover {
+      background: rgba(76, 175, 125, 0.1);
+    }
+
+    .coverage-item .icon-circle {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #4caf7d, #2d7a4f);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .coverage-item svg {
+      width: 28px;
+      height: 28px;
+      stroke: #ffffff;
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .coverage-item span {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #2d5a41;
+    }
+
     .timestamp {
       margin-top: 2rem;
       font-size: 0.8rem;
-      color: #475569;
+      color: #6b8577;
     }
 
     /* Contact form */
     .form-card {
-      max-width: 480px;
+      max-width: 560px;
       width: 100%;
       padding: 2.5rem;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.7);
+      border: 1px solid rgba(45, 122, 79, 0.15);
       border-radius: 16px;
       backdrop-filter: blur(10px);
+      box-shadow: 0 4px 24px rgba(45, 122, 79, 0.08);
     }
 
     .field {
@@ -96,7 +161,7 @@
       display: block;
       font-size: 0.85rem;
       font-weight: 600;
-      color: #cbd5e1;
+      color: #2d5a41;
       margin-bottom: 0.4rem;
     }
 
@@ -105,9 +170,9 @@
       width: 100%;
       padding: 0.7rem 0.9rem;
       border-radius: 8px;
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      background: rgba(15, 23, 42, 0.6);
-      color: #f1f5f9;
+      border: 1px solid rgba(45, 122, 79, 0.25);
+      background: rgba(255, 255, 255, 0.9);
+      color: #1e3a2f;
       font-size: 0.95rem;
       font-family: inherit;
       outline: none;
@@ -116,7 +181,7 @@
 
     input:focus,
     textarea:focus {
-      border-color: #38bdf8;
+      border-color: #2d7a4f;
     }
 
     textarea {
@@ -125,7 +190,7 @@
     }
 
     .error-msg {
-      color: #f87171;
+      color: #c0392b;
       font-size: 0.8rem;
       margin-top: 0.35rem;
       min-height: 1rem;
@@ -136,8 +201,8 @@
       padding: 0.85rem;
       border: none;
       border-radius: 8px;
-      background: linear-gradient(135deg, #38bdf8, #818cf8);
-      color: #0f172a;
+      background: linear-gradient(135deg, #4caf7d, #2d7a4f);
+      color: #ffffff;
       font-size: 1rem;
       font-weight: 700;
       cursor: pointer;
@@ -149,25 +214,129 @@
       opacity: 0.9;
     }
 
+    button[type="submit"]:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
     .success-msg {
       display: none;
       text-align: center;
       padding: 1rem;
       border-radius: 8px;
-      background: rgba(74, 222, 128, 0.12);
-      border: 1px solid rgba(74, 222, 128, 0.35);
-      color: #4ade80;
+      background: rgba(76, 175, 125, 0.15);
+      border: 1px solid rgba(76, 175, 125, 0.4);
+      color: #2d7a4f;
       font-size: 0.95rem;
       margin-top: 1rem;
+    }
+
+    /* Geoapify autocomplete theming */
+    #propertyAddressAutocomplete {
+      position: relative;
+    }
+
+    .geoapify-autocomplete-input {
+      width: 100%;
+      padding: 0.7rem 0.9rem;
+      border-radius: 8px;
+      border: 1px solid rgba(45, 122, 79, 0.25);
+      background: rgba(255, 255, 255, 0.9);
+      color: #1e3a2f;
+      font-size: 0.95rem;
+      font-family: inherit;
+      outline: none;
+    }
+
+    .geoapify-autocomplete-input:focus {
+      border-color: #2d7a4f;
+    }
+
+    .geoapify-autocomplete-items {
+      border: 1px solid rgba(45, 122, 79, 0.25);
+      border-radius: 8px;
+      overflow: hidden;
+      margin-top: 4px;
     }
   </style>
 </head>
 <body>
   <div class="card">
     <span class="badge">✓ Deployment Successful</span>
-    <h1>It works! 🎉</h1>
-    <p>This is a basic test site, deployed and served from Vercel. If you can see this page, your deployment pipeline is working correctly.</p>
+    <h1>Welcome to Our Insurance Website</h1>
+    <p>We're glad you're here. Explore our coverage options below, or reach out using the contact form and one of our agents will be in touch.</p>
     <div class="timestamp" id="timestamp"></div>
+  </div>
+
+  <div class="coverage-card">
+    <h2 style="text-align:center;">Our Coverage</h2>
+    <div class="coverage-grid">
+      <div class="coverage-item">
+        <div class="icon-circle">
+          <!-- Auto icon -->
+          <svg viewBox="0 0 24 24">
+            <path d="M3 13l1.5-4.5A2 2 0 0 1 6.4 7h11.2a2 2 0 0 1 1.9 1.5L21 13" />
+            <rect x="2.5" y="13" width="19" height="5" rx="1.5" />
+            <circle cx="7" cy="18.5" r="1.5" />
+            <circle cx="17" cy="18.5" r="1.5" />
+          </svg>
+        </div>
+        <span>Auto</span>
+      </div>
+
+      <div class="coverage-item">
+        <div class="icon-circle">
+          <!-- Home icon -->
+          <svg viewBox="0 0 24 24">
+            <path d="M3 11l9-7 9 7" />
+            <path d="M5 10v10a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1V10" />
+          </svg>
+        </div>
+        <span>Home</span>
+      </div>
+
+      <div class="coverage-item">
+        <div class="icon-circle">
+          <!-- Building icon -->
+          <svg viewBox="0 0 24 24">
+            <rect x="5" y="3" width="14" height="18" rx="1" />
+            <line x1="9" y1="7" x2="9" y2="7" />
+            <line x1="15" y1="7" x2="15" y2="7" />
+            <line x1="9" y1="11" x2="9" y2="11" />
+            <line x1="15" y1="11" x2="15" y2="11" />
+            <line x1="9" y1="15" x2="9" y2="15" />
+            <line x1="15" y1="15" x2="15" y2="15" />
+            <path d="M10 21v-4h4v4" />
+          </svg>
+        </div>
+        <span>Building</span>
+      </div>
+
+      <div class="coverage-item">
+        <div class="icon-circle">
+          <!-- Umbrella icon -->
+          <svg viewBox="0 0 24 24">
+            <path d="M12 3a9 9 0 0 1 9 9H3a9 9 0 0 1 9-9z" />
+            <line x1="12" y1="3" x2="12" y2="2" />
+            <line x1="12" y1="12" x2="12" y2="19" />
+            <path d="M12 19a2 2 0 0 0 4 0" />
+          </svg>
+        </div>
+        <span>Umbrella</span>
+      </div>
+
+      <div class="coverage-item">
+        <div class="icon-circle">
+          <!-- Business icon -->
+          <svg viewBox="0 0 24 24">
+            <rect x="3" y="8" width="18" height="12" rx="1.5" />
+            <path d="M8 8V6a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+            <line x1="3" y1="13" x2="21" y2="13" />
+          </svg>
+        </div>
+        <span>Business</span>
+      </div>
+    </div>
   </div>
 
   <div class="form-card">
@@ -192,6 +361,13 @@
       </div>
 
       <div class="field">
+        <label for="propertyAddressAutocomplete">Property Address</label>
+        <div id="propertyAddressAutocomplete"></div>
+        <input type="hidden" id="propertyAddress" name="propertyAddress" />
+        <div class="error-msg" id="propertyAddressError"></div>
+      </div>
+
+      <div class="field">
         <label for="comments">Comments</label>
         <textarea id="comments" name="comments" placeholder="How can we help?"></textarea>
         <div class="error-msg" id="commentsError"></div>
@@ -202,9 +378,28 @@
     </form>
   </div>
 
+  <script src="https://unpkg.com/@geoapify/geocoder-autocomplete/dist/index.min.js"></script>
   <script>
     document.getElementById('timestamp').textContent =
       'Page loaded: ' + new Date().toLocaleString();
+
+    // Geoapify address autocomplete
+    const geoapifyAutocomplete = new autocomplete.GeocoderAutocomplete(
+      document.getElementById('propertyAddressAutocomplete'),
+      '253ee9e386e840f98fc614f246a08fde',
+      { placeholder: '123 Main St, Springfield', lang: 'en', limit: 5 }
+    );
+
+    geoapifyAutocomplete.on('select', function (location) {
+      const formatted = location && location.properties ? location.properties.formatted : '';
+      document.getElementById('propertyAddress').value = formatted || '';
+      setError('propertyAddress', '');
+    });
+
+    geoapifyAutocomplete.on('input', function (value) {
+      // Keep the hidden field in sync with manual typing too
+      document.getElementById('propertyAddress').value = value || '';
+    });
 
     const form = document.getElementById('contactForm');
     const successMsg = document.getElementById('successMsg');
@@ -214,7 +409,7 @@
     }
 
     function clearErrors() {
-      ['name', 'email', 'phone', 'comments'].forEach(id => setError(id, ''));
+      ['name', 'email', 'phone', 'propertyAddress', 'comments'].forEach(id => setError(id, ''));
     }
 
     form.addEventListener('submit', async function (e) {
@@ -228,6 +423,7 @@
       const name = document.getElementById('name').value.trim();
       const email = document.getElementById('email').value.trim();
       const phone = document.getElementById('phone').value.trim();
+      const propertyAddress = document.getElementById('propertyAddress').value.trim();
       const comments = document.getElementById('comments').value.trim();
 
       let isValid = true;
@@ -270,7 +466,7 @@
         const response = await fetch('/api/contact', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ name, email, phone, comments }),
+          body: JSON.stringify({ name, email, phone, propertyAddress, comments }),
         });
 
         const data = await response.json();
@@ -285,9 +481,9 @@
       } catch (err) {
         successMsg.textContent = err.message || 'Something went wrong. Please try again.';
         successMsg.style.display = 'block';
-        successMsg.style.color = '#f87171';
-        successMsg.style.background = 'rgba(248, 113, 113, 0.12)';
-        successMsg.style.borderColor = 'rgba(248, 113, 113, 0.35)';
+        successMsg.style.color = '#c0392b';
+        successMsg.style.background = 'rgba(192, 57, 43, 0.1)';
+        successMsg.style.borderColor = 'rgba(192, 57, 43, 0.35)';
       } finally {
         submitBtn.disabled = false;
         submitBtn.textContent = 'Send Message';
